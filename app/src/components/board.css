@@ -1,0 +1,20 @@
+#board {
+  margin: 12px;
+  border-top: 1px solid #C3D5FB;
+  border-left: 1px solid #C3D5FB;
+}
+
+.row {
+  display: flex;
+}
+
+.node {
+  border-right: 1px solid #C3D5FB;
+  border-bottom: 1px solid #C3D5FB;
+  width: 25px;
+  height: 25px;
+}
+
+.node:hover {
+  background-color: #fafafa;
+}
