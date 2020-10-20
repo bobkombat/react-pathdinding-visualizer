@@ -15,6 +15,14 @@
   height: 25px;
 }
 
+.node-start {
+  background-color: green;
+}
+
+.node-end {
+  background-color: red;
+}
+
 .node:hover {
-  background-color: #fafafa;
+  opacity: 0.5;
 }
