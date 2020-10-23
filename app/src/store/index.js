@@ -1,6 +1,11 @@
-import { createStore, applyMiddlewares, combineReducers } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
+import boardReducers from "./reducers/board.js";
 
-const reducers = combineReducers({});
+const reducers = combineReducers({
+  boardReducers,
+});
 
-export default store = createStore(reducers, applyMiddlewares(thunk));
+const store = createStore(reducers, applyMiddleware(thunk));
+
+export default store;
