@@ -1,6 +1,10 @@
 import { SET_BOARD } from "../actionTypes.js";
 const initialState = {
   board: [],
+  start: {},
+  finish: {},
+  height: 0,
+  width: 0,
 };
 
 export default (state = initialState, actions) => {

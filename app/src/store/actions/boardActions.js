@@ -14,6 +14,10 @@ export function setBoard(height, width) {
       type: SET_BOARD,
       payload: {
         board: tempBoard,
+        start: { x: 0, y: 0 },
+        finish: { x: width - 1 },
+        height: height,
+        width: width,
       },
     });
   };
