@@ -7,6 +7,10 @@ export default class MinHeap {
     return this.heap[1];
   }
 
+  get length() {
+    return this.heap.length;
+  }
+
   insert(node) {
     this.heap.push(node);
 
@@ -29,7 +33,7 @@ export default class MinHeap {
     }
   }
 
-  removeMinNode(node) {
+  removeMinNode() {
     let smallest = this.getMinNode;
 
     let heapLen = this.heap.length;
