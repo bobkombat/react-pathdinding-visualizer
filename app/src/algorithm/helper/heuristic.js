@@ -1,10 +1,4 @@
-export default function heuristicTypeChooser(
-  arguments,
-  currentY,
-  currentX,
-  finishY,
-  finishX
-) {
+export default function heuristicTypeChooser(arguments, currentY, currentX, finishY, finishX) {
   switch (arguments) {
     case "EUCLIDEAN":
       return euclideanDistance(currentY, currentX, finishY, finishY);
@@ -22,9 +16,7 @@ function manhattanDistance(currentY, currentX, finishY, finishX) {
 }
 
 function euclideanDistance(currentY, currentX, finishY, finishX) {
-  return Math.sqrt(
-    Math.pow(finishX - currentX, 2) + Math.pow(finishY - currentY, 2)
-  );
+  return Math.sqrt(Math.pow(finishX - currentX, 2) + Math.pow(finishY - currentY, 2));
 }
 
 function chebyshevDistance(currentY, currentX, finishY, finishX) {

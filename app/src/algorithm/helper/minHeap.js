@@ -25,10 +25,7 @@ export default class MinHeap {
           this.heap[current].fScore,
           this.heap[currentParentNode].fScore,
         ];
-        [current, currentParentNode] = [
-          currentParentNode,
-          Math.floor(currentParentNode / 2),
-        ];
+        [current, currentParentNode] = [currentParentNode, Math.floor(currentParentNode / 2)];
       }
     }
   }
@@ -101,6 +98,6 @@ export default class MinHeap {
       }
     }
 
-    return false};
+    return false;
   }
 }

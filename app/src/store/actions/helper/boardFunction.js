@@ -1,8 +1,6 @@
 export function createBoard(height, width, start, finish) {
   const board = [];
 
-  console.log(start, finish);
-
   for (let i = 0; i < height; i++) {
     const tempArray = [];
     for (let j = 0; j < width; j++) {
