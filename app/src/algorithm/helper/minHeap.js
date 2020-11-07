@@ -31,11 +31,21 @@ export default class MinHeap {
   }
 
   removeMinNode() {
+    if (this.length < 2) {
+      return null;
+    }
+
     let smallest = this.getMinNode;
 
     let heapLen = this.heap.length;
+
+    console.log(this.heap);
     if (heapLen > 2) {
       this.heap[1] = this.heap.pop();
+
+      if (heapLen == 3) {
+        return smallest;
+      }
 
       if (heapLen === 4) {
         if (this.heap[1].fScore > this.heap[2].fScore) {
@@ -72,6 +82,8 @@ export default class MinHeap {
         rightChildNode = current * 2 + 1;
         leftChildNode = current * 2;
       }
+
+      console.log(current, leftChildNode, this.heap, this.length);
 
       if (
         this.heap[rightChildNode] === undefined &&

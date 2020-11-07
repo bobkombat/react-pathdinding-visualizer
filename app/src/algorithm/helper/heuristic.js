@@ -1,11 +1,11 @@
-export default function heuristicTypeChooser(arguments, currentY, currentX, finishY, finishX) {
-  switch (arguments) {
+export default function heuristicTypeChooser(args, currentY, currentX, finishY, finishX) {
+  switch (args) {
     case "EUCLIDEAN":
       return euclideanDistance(currentY, currentX, finishY, finishY);
     case "MANHATTAN":
       return manhattanDistance(currentY, currentX, finishY, finishX);
     case "CHEBYSHEV":
-      return chebyshevDistance(currentY, currentX, finishY, finihsX);
+      return chebyshevDistance(currentY, currentX, finishY, finishX);
     default:
       return manhattanDistance(currentY, currentX, finishY, finishX);
   }

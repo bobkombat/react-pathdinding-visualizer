@@ -16,6 +16,7 @@ export function createBoard(height, width, start, finish) {
           fScore: null,
           gScore: Infinity,
           weight: 1,
+          parent: null,
         });
       else if (finish.y === i && finish.x === j)
         tempArray.push({
@@ -29,6 +30,7 @@ export function createBoard(height, width, start, finish) {
           fScore: null,
           gScore: Infinity,
           weight: 1,
+          parent: null,
         });
       else
         tempArray.push({
@@ -42,6 +44,7 @@ export function createBoard(height, width, start, finish) {
           fScore: null,
           gScore: Infinity,
           weight: 1,
+          parent: null,
         });
     }
     board.push(tempArray);

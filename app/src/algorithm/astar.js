@@ -1,9 +1,6 @@
 import heuristicTypeChooser from "./helper/heuristic.js";
 import MinHeap from "./helper/minHeap.js";
-
-function reconstructPath(cameFrom, current) {
-  const totalPath = [];
-}
+import { reconstructPath, getCurrentNeighbor } from "./helper/utilFunctions.js";
 
 export default function AStarAlgorithm(board, startY, startX, finishY, finishX, heuristicType) {
   heuristicType = heuristicType || "MANHATTAN";
@@ -24,20 +21,23 @@ export default function AStarAlgorithm(board, startY, startX, finishY, finishX, 
     endNode.x
   );
 
-  const cameFrom = [];
-
   openSet.insert(startNode);
 
   while (openSet.length > 1) {
     let current = openSet.getMinNode;
 
+    console.log(current, "<<<<<<<<<<<<<<< line 29");
+
     if (current.x == endNode.x && current.y == endNode.y) {
       return reconstructPath(cameFrom, current);
     }
 
+    console.log("test", openSet.length);
     openSet.removeMinNode();
 
     const neighbors = getCurrentNeighbor(board, current);
+    console.log("neigbors <<<<<<<<<<<", neighbors);
+
     for (let neighbor of neighbors) {
       if (neighbor.wall === true) {
         continue;
@@ -50,7 +50,7 @@ export default function AStarAlgorithm(board, startY, startX, finishY, finishX, 
         current.x + (x - current.x === 0 || y - current.y === 0 ? 1 : Math.SQRT2);
 
       if (!neighbor.visited || tentativeGScore < neighbor.g) {
-        cameFrom[`node-${neighbor.y}-${neighbor.x}`] = `node-${current.y}-${current.x}`;
+        board[y][x]["parent"] = current;
         neighbor.gScore = tentativeGScore;
         neighbor.fScore =
           neighbor.gScore +
