@@ -13,7 +13,7 @@ export function createBoard(height, width, start, finish) {
           finish: false,
           visited: false,
           path: false,
-          fScore: null,
+          fScore: Infinity,
           gScore: Infinity,
           weight: 1,
           parent: null,

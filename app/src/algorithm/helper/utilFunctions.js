@@ -11,22 +11,16 @@ export function reconstructPath(cameFrom, current) {
 export function getCurrentNeighbor(board, current) {
   const neighbors = [];
 
-  if (
-    board[current.y][current.x + 1] !== undefined &&
-    board[current.y][current.x + 1]["wall"] !== true
-  ) {
+  if (board[current.y][current.x + 1] !== undefined) {
     neighbors.push(board[current.y][current.x + 1]);
   }
-  if (
-    board[current.y][current.x - 1] !== undefined &&
-    board[current.y][current.x - 1]["wall"] !== true
-  ) {
+  if (board[current.y][current.x - 1] !== undefined) {
     neighbors.push(board[current.y][current.x - 1]);
   }
-  if (board[current.y + 1] !== undefined && board[current.y + 1][current.x]["wall"] !== true) {
+  if (board[current.y + 1] !== undefined) {
     neighbors.push(board[current.y + 1][current.x]);
   }
-  if (board[current.y - 1] !== undefined && board[current.y - 1][current.x]["wall"] !== true) {
+  if (board[current.y - 1] !== undefined) {
     neighbors.push(board[current.y - 1][current.x]);
   }
 

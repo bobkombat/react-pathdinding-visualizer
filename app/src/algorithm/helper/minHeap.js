@@ -38,8 +38,6 @@ export default class MinHeap {
     let smallest = this.getMinNode;
 
     let heapLen = this.heap.length;
-
-    console.log(this.heap);
     if (heapLen > 2) {
       this.heap[1] = this.heap.pop();
 
@@ -83,10 +81,9 @@ export default class MinHeap {
         leftChildNode = current * 2;
       }
 
-      console.log(current, leftChildNode, this.heap, this.length);
-
       if (
         this.heap[rightChildNode] === undefined &&
+        this.heap[leftChildNode] !== undefined &&
         this.heap[current].fScore > this.heap[leftChildNode].fScore
       ) {
         [this.heap[current], this.heap[leftChildNode]] = [
@@ -105,7 +102,7 @@ export default class MinHeap {
 
   search(node) {
     for (let i = 1; i < this.heap.length; i++) {
-      if (node == this.heap[i]) {
+      if (node["x"] == this.heap[i]["x"] && node["y"] == this.heap[i]["y"]) {
         return true;
       }
     }

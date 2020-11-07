@@ -22,22 +22,20 @@ export default function AStarAlgorithm(board, startY, startX, finishY, finishX, 
   );
 
   openSet.insert(startNode);
-
-  while (openSet.length > 1) {
+  const finish = 10;
+  let z = 0;
+  while (openSet.length > 1 && z != finish) {
     let current = openSet.getMinNode;
 
-    console.log(current, "<<<<<<<<<<<<<<< line 29");
+    board[current.y][current.x]["visited"] = true;
 
     if (current.x == endNode.x && current.y == endNode.y) {
       return reconstructPath(cameFrom, current);
     }
 
-    console.log("test", openSet.length);
     openSet.removeMinNode();
 
     const neighbors = getCurrentNeighbor(board, current);
-    console.log("neigbors <<<<<<<<<<<", neighbors);
-
     for (let neighbor of neighbors) {
       if (neighbor.wall === true) {
         continue;
@@ -51,13 +49,12 @@ export default function AStarAlgorithm(board, startY, startX, finishY, finishX, 
 
       if (!neighbor.visited || tentativeGScore < neighbor.g) {
         board[y][x]["parent"] = current;
-        neighbor.gScore = tentativeGScore;
-        neighbor.fScore =
+        board[y][x].gScore = tentativeGScore;
+        board[y][x].fScore =
           neighbor.gScore +
           heuristicTypeChooser(heuristicType, neighbor.y, neighbor.x, endNode.y, endNode.x);
-
         if (!openSet.search(neighbor)) {
-          openSet.insert(neighbor);
+          openSet.insert(board[y][x]);
         }
       }
     }
