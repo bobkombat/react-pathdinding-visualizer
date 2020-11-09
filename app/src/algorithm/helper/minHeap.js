@@ -41,10 +41,6 @@ export default class MinHeap {
     if (heapLen > 2) {
       this.heap[1] = this.heap.pop();
 
-      if (heapLen == 3) {
-        return smallest;
-      }
-
       if (heapLen === 4) {
         if (this.heap[1].fScore > this.heap[2].fScore) {
           [this.heap[1], this.heap[2]] = [this.heap[2], this.heap[1]];
@@ -57,13 +53,27 @@ export default class MinHeap {
       let rightChildNode = current * 2 + 1;
       let leftChildNode = current * 2;
 
+      if (
+        this.heap[rightChildNode] !== undefined &&
+        this.heap[current].fScore > this.heap[rightChildNode].fScore
+      ) {
+        [this.heap[current], this.heap[rightChildNode]] = [
+          this.heap[rightChildNode],
+          this.heap[current],
+        ];
+        current = rightChildNode;
+        rightChildNode = current * 2 + 1;
+        leftChildNode = current * 2;
+      }
+
+      console.log(this.heap[current].fScore, "minheap");
       while (
         this.heap[rightChildNode] &&
         this.heap[leftChildNode] &&
         (this.heap[current].fScore > this.heap[rightChildNode].fScore ||
           this.heap[current].fScore > this.heap[leftChildNode].fScore)
       ) {
-        if (this.heap[current].fScore > this.heap[rightChildNode].fScore) {
+        if (this.heap[current].fScore > this.heap[leftChildNode].fScore) {
           [this.heap[current], this.heap[leftChildNode]] = [
             this.heap[leftChildNode],
             this.heap[current],

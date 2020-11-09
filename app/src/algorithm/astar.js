@@ -36,11 +36,15 @@ export default function AStarAlgorithm(board, startY, startX, finishY, finishX, 
     }
 
     const test = openSet.heap.slice(1).map((x) => x.fScore);
-    console.log(test);
+    console.log(test, "1");
     // console.log(Math.min(...test), openSet.removeMinNode());
     // console.log(Math.min(...openSet.heap.slice(1).map((x) => x.fScore)));
 
     openSet.removeMinNode();
+    console.log(
+      openSet.heap.slice(1).map((x) => x.fScore),
+      "2"
+    );
 
     const neighbors = getCurrentNeighbor(board, current);
     for (let neighbor of neighbors) {
