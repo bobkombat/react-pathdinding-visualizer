@@ -1,7 +1,7 @@
 #board {
   margin: 12px;
-  border-top: 1px solid #C3D5FB;
-  border-left: 1px solid #C3D5FB;
+  border-top: 1px solid #c3d5fb;
+  border-left: 1px solid #c3d5fb;
 }
 
 .row {
@@ -9,8 +9,8 @@
 }
 
 .node {
-  border-right: 1px solid #C3D5FB;
-  border-bottom: 1px solid #C3D5FB;
+  border-right: 1px solid #c3d5fb;
+  border-bottom: 1px solid #c3d5fb;
   width: 25px;
   height: 25px;
 }
@@ -25,4 +25,8 @@
 
 .node:hover {
   opacity: 0.5;
+}
+
+.path {
+  background-color: blueviolet;
 }

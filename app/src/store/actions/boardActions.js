@@ -4,14 +4,14 @@ import AStarAlgorithm from "../../algorithm/astar.js";
 
 export function setBoard(height, width) {
   return (dispatch, state) => {
-    const tempBoard = createBoard(height, width, { x: 0, y: 0 }, { x: width - 1, y: height - 1 });
+    const tempBoard = createBoard(height, width, { x: 0, y: 0 }, { x: width - 5, y: height - 5 });
 
     dispatch({
       type: SET_BOARD,
       payload: {
         board: tempBoard,
         start: { x: 0, y: 0 },
-        finish: { x: width - 1, y: height - 1 },
+        finish: { x: width - 5, y: height - 5 },
         height: height,
         width: width,
       },
@@ -28,14 +28,14 @@ export function startSearch() {
       currentBoard.height,
       currentBoard.width,
       { x: 0, y: 0 },
-      { x: currentBoard.width - 1, y: currentBoard.height - 1 }
+      { x: currentBoard.width - 5, y: currentBoard.height - 5 }
     );
     dispatch({
       type: SET_BOARD,
       payload: {
         board: tempBoard,
         start: { x: 0, y: 0 },
-        finish: { x: currentBoard.width - 1, y: currentBoard.height - 1 },
+        finish: { x: currentBoard.width - 5, y: currentBoard.height - 5 },
         height: currentBoard.height,
         width: currentBoard.width,
       },
@@ -46,8 +46,18 @@ export function startSearch() {
       currentBoard["start"]["y"],
       currentBoard["start"]["x"],
       currentBoard["finish"]["y"],
-      currentBoard["finish"]["x"]
+      currentBoard["finish"]["x"],
+      "EUCLIDEAN"
     );
+    path.pop();
+    path.shift();
+
+    for (let i of path) {
+      setTimeout(() => {
+        const node = document.getElementById(`node-${i["y"] + 1}-${i["x"] + 1}`);
+        node.classList.add("path");
+      }, 1000);
+    }
 
     console.log(Date.now() - time);
     console.log(path);

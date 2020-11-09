@@ -22,9 +22,11 @@ export default function AStarAlgorithm(board, startY, startX, finishY, finishX, 
   );
 
   openSet.insert(startNode);
-  const finish = 10;
-  let z = 0;
-  while (openSet.length > 1 && z != finish) {
+  board[startY][startX]["visited"] = true;
+
+  const visitedNode = [];
+
+  while (openSet.length > 1) {
     let current = openSet.getMinNode;
 
     board[current.y][current.x]["visited"] = true;
@@ -32,6 +34,11 @@ export default function AStarAlgorithm(board, startY, startX, finishY, finishX, 
     if (current.x == endNode.x && current.y == endNode.y) {
       return reconstructPath(cameFrom, current);
     }
+
+    const test = openSet.heap.slice(1).map((x) => x.fScore);
+    console.log(test);
+    // console.log(Math.min(...test), openSet.removeMinNode());
+    // console.log(Math.min(...openSet.heap.slice(1).map((x) => x.fScore)));
 
     openSet.removeMinNode();
 
@@ -45,14 +52,14 @@ export default function AStarAlgorithm(board, startY, startX, finishY, finishX, 
       const y = neighbor.y;
 
       const tentativeGScore =
-        current.x + (x - current.x === 0 || y - current.y === 0 ? 1 : Math.SQRT2);
+        current.gScore + (x - current.x === 0 || y - current.y === 0 ? 1 : Math.SQRT2);
 
-      if (!neighbor.visited || tentativeGScore < neighbor.g) {
+      if (!neighbor.visited || tentativeGScore < board[y][x].gScore) {
         board[y][x]["parent"] = current;
         board[y][x].gScore = tentativeGScore;
         board[y][x].fScore =
-          neighbor.gScore +
-          heuristicTypeChooser(heuristicType, neighbor.y, neighbor.x, endNode.y, endNode.x);
+          board[y][x].gScore + heuristicTypeChooser(heuristicType, y, x, endNode.y, endNode.x);
+
         if (!openSet.search(neighbor)) {
           openSet.insert(board[y][x]);
         }
