@@ -31,20 +31,11 @@ export default function AStarAlgorithm(board, startY, startX, finishY, finishX, 
 
     board[current.y][current.x]["visited"] = true;
 
-    if (current.x == endNode.x && current.y == endNode.y) {
+    if (current.x === endNode.x && current.y === endNode.y) {
       return reconstructPath(cameFrom, current);
     }
 
-    const test = openSet.heap.slice(1).map((x) => x.fScore);
-    console.log(test, "1");
-    // console.log(Math.min(...test), openSet.removeMinNode());
-    // console.log(Math.min(...openSet.heap.slice(1).map((x) => x.fScore)));
-
     openSet.removeMinNode();
-    console.log(
-      openSet.heap.slice(1).map((x) => x.fScore),
-      "2"
-    );
 
     const neighbors = getCurrentNeighbor(board, current);
     for (let neighbor of neighbors) {

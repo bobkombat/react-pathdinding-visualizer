@@ -1,10 +1,11 @@
-import { SET_BOARD } from "../actionTypes.js";
+import { SET_BOARD, SET_PATH } from "../actionTypes.js";
 const initialState = {
   board: [],
   start: {},
   finish: {},
   height: 0,
   width: 0,
+  path: [],
 };
 
 export default (state = initialState, actions) => {
@@ -18,6 +19,8 @@ export default (state = initialState, actions) => {
         height: actions.payload.height,
         width: actions.payload.width,
       };
+    case SET_PATH:
+      return { ...state, path: actions.payload.path };
     default:
       return state;
   }

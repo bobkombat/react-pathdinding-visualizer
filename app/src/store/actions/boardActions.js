@@ -47,16 +47,16 @@ export function startSearch() {
       currentBoard["start"]["x"],
       currentBoard["finish"]["y"],
       currentBoard["finish"]["x"],
-      "EUCLIDEAN"
+      "MANHATTAN"
     );
     path.pop();
     path.shift();
 
     for (let i of path) {
-      setTimeout(() => {
-        const node = document.getElementById(`node-${i["y"] + 1}-${i["x"] + 1}`);
-        node.classList.add("path");
-      }, 1000);
+      const element = document.createElement("div");
+
+      element.classList.add("path");
+      document.getElementById(`node-${i["y"] + 1}-${i["x"] + 1}`).appendChild(element);
     }
 
     console.log(Date.now() - time);
