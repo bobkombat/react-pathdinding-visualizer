@@ -1,20 +1,68 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./board.css";
 import useWindowDimensions from "../hooks/windowDimensions";
 import { useSelector, useDispatch } from "react-redux";
 import { setBoard } from "../store/actions/boardActions.js";
+import { Component } from "react";
 
 export default function Board() {
   const board = useSelector((store) => store.boardReducers.board);
   const dispatch = useDispatch();
   const { height, width } = useWindowDimensions();
+  const [start, setStart] = useState("");
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
     dispatch(setBoard(height, width));
   }, [height, width, dispatch]);
 
+  function onMouseDown(e) {
+    if (e.button !== 0) return;
+
+    setDragging(true);
+    setX(e.pageX);
+    setY(e.pageY);
+
+    console.log("tesiting");
+
+    e.stopPropagation();
+    e.preventDefault();
+  }
+
+  function onMouseEnter(e) {
+    setStart("entering start");
+  }
+
+  function onMouseExit(e) {
+    setStart("");
+  }
+
+  function onMouseUp(e) {
+    if (e.button !== 0) return;
+
+    setDragging(false);
+    console.log("mouse is up");
+
+    e.stopPropagation();
+    e.preventDefault();
+  }
+
+  function onMouseMove(e) {
+    if (!dragging) return;
+
+    setX(e.pageX);
+    setY(e.pageY);
+
+    console.log("foo", x, y);
+  }
+
   return (
     <div id="board">
+      {start}
+      {x}
+      {y}
       {board.map((x, idx) => {
         return (
           <div id={`row-${idx + 1}`} key={`row-${idx}`} className="row">
@@ -25,6 +73,12 @@ export default function Board() {
                     id={`node-${idx + 1}-${id + 1}`}
                     key={`node-${idx}-${id}`}
                     className="node node-start"
+                    onMouseDown={(e) => onMouseDown(e)}
+                    onMouseUp={(e) => onMouseUp(e)}
+                    onMouseEnter={(e) => onMouseEnter(e)}
+                    onMouseLeave={(e) => onMouseExit(e)}
+                    style={{ left: x, top: y }}
+                    onMouseMove={(e) => onMouseMove(e)}
                   ></div>
                 );
               else if (z.finish)

@@ -17,6 +17,7 @@
 
 .node-start {
   background-color: green;
+  cursor: pointer;
 }
 
 .node-end {
