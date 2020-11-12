@@ -13,15 +13,29 @@
   border-bottom: 1px solid #afd8f8;
   width: 25px;
   height: 25px;
+  transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
 }
 
 .node-start {
   background-color: green;
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.node-start:active:hover {
+  transform: scale(1.1);
 }
 
 .node-end {
   background-color: red;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.node-end:active:hover {
+  transform: scale(1.1);
 }
 
 .node:hover {

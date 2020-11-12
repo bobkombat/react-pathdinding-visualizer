@@ -3,7 +3,6 @@ import "./board.css";
 import useWindowDimensions from "../hooks/windowDimensions";
 import { useSelector, useDispatch } from "react-redux";
 import { setBoard } from "../store/actions/boardActions.js";
-import { Component } from "react";
 
 export default function Board() {
   const board = useSelector((store) => store.boardReducers.board);
@@ -26,13 +25,12 @@ export default function Board() {
     setY(e.pageY);
 
     console.log("tesiting");
-
-    e.stopPropagation();
-    e.preventDefault();
   }
 
   function onMouseEnter(e) {
     setStart("entering start");
+
+    console.log(e);
   }
 
   function onMouseExit(e) {
@@ -44,9 +42,6 @@ export default function Board() {
 
     setDragging(false);
     console.log("mouse is up");
-
-    e.stopPropagation();
-    e.preventDefault();
   }
 
   function onMouseMove(e) {
@@ -59,10 +54,11 @@ export default function Board() {
   }
 
   return (
-    <div id="board">
+    <div id="board" onContextMenu={(e) => e.preventDefault()}>
       {start}
       {x}
       {y}
+      {JSON.stringify(dragging)}
       {board.map((x, idx) => {
         return (
           <div id={`row-${idx + 1}`} key={`row-${idx}`} className="row">
